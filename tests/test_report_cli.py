@@ -7,19 +7,21 @@ sabe nada del proyecto donde nació.
 import pytest
 import yaml
 
-from sumakit.report import cli
+from minta_labs.report import cli
 
 
 def test_instala_las_extensiones_en_un_directorio_ajeno(tmp_path):
     cli.init(tmp_path, esqueleto=False)
-    ext = tmp_path / "_extensions" / "sumakit" / "academico"
+    ext = tmp_path / "_extensions" / "minta-labs" / "academico"
     assert (ext / "_extension.yml").exists()
     assert (ext / "preambulo.tex").exists()
 
 
 def test_la_extension_declara_el_formato_pdf(tmp_path):
     cli.init(tmp_path, esqueleto=False)
-    spec = yaml.safe_load((tmp_path / "_extensions/sumakit/academico/_extension.yml").read_text())
+    spec = yaml.safe_load(
+        (tmp_path / "_extensions/minta-labs/academico/_extension.yml").read_text()
+    )
     formatos = spec["contributes"]["formats"]
     assert "pdf" in formatos
     assert formatos["pdf"]["number-sections"] is True
@@ -30,7 +32,7 @@ def test_siembra_el_esqueleto_del_informe(tmp_path):
     cli.init(tmp_path, titulo="Mi informe", autor="Alguien", notebook="x.ipynb")
     qmd = (tmp_path / "academico.qmd").read_text(encoding="utf-8")
     assert "Mi informe" in qmd and "Alguien" in qmd
-    assert "sumakit/academico-pdf" in qmd, "el nombre del formato debe ser el calificado"
+    assert "minta-labs/academico-pdf" in qmd, "el nombre del formato debe ser el calificado"
     assert "x.ipynb#fig-ejemplo" in qmd, "el esqueleto muestra cómo embeber del notebook"
     assert (tmp_path / "referencias.bib").exists()
 
@@ -56,17 +58,17 @@ def test_render_avisa_si_no_encuentra_la_fuente(tmp_path):
 
 def test_el_preambulo_trae_booktabs_y_el_acento(tmp_path):
     cli.init(tmp_path, esqueleto=False)
-    tex = (tmp_path / "_extensions/sumakit/academico/preambulo.tex").read_text()
+    tex = (tmp_path / "_extensions/minta-labs/academico/preambulo.tex").read_text()
     assert "booktabs" in tex
-    assert "sumakitaccent" in tex
+    assert "mintalabsaccent" in tex
 
 
 def test_el_acento_del_preambulo_coincide_con_la_paleta(tmp_path):
     """Si divergen, el PDF y los gráficos dejan de ser el mismo sistema."""
-    from sumakit import theme
+    from minta_labs import theme
 
     cli.init(tmp_path, esqueleto=False)
-    tex = (tmp_path / "_extensions/sumakit/academico/preambulo.tex").read_text()
+    tex = (tmp_path / "_extensions/minta-labs/academico/preambulo.tex").read_text()
     esperado = theme.LIGHT.categorical[0].lstrip("#").upper()
     assert f"{{HTML}}{{{esperado}}}" in tex.upper()
 
@@ -92,7 +94,7 @@ def test_puede_sembrar_solo_uno(tmp_path):
 def test_el_esqueleto_de_negocio_usa_la_api_del_deck(tmp_path):
     cli.init(tmp_path, tipo="negocio", titulo="Mi deck")
     py = (tmp_path / "negocio.py").read_text(encoding="utf-8")
-    assert "from sumakit.deck import Deck" in py
+    assert "from minta_labs.deck import Deck" in py
     assert "Mi deck" in py
     assert "título de acción" in py, "el esqueleto debe explicar la regla"
 

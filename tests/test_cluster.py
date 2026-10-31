@@ -1,6 +1,6 @@
 """El diagnóstico de una segmentación: elegir k, y explicar en qué se distingue.
 
-sumakit no ajusta ningún modelo. Estas funciones reciben etiquetas o modelos ya
+minta-labs no ajusta ningún modelo. Estas funciones reciben etiquetas o modelos ya
 entrenados; el bucle que los entrena vive a la vista en el notebook, porque en
 un taller lo que se evalúa es justamente esa llamada.
 """
@@ -14,7 +14,7 @@ pytest.importorskip("sklearn")
 
 from sklearn.cluster import KMeans  # noqa: E402
 
-from sumakit import cluster, plots  # noqa: E402
+from minta_labs import cluster, plots  # noqa: E402
 
 
 @pytest.fixture
@@ -200,12 +200,12 @@ def test_sin_sklearn_dice_que_extra_instalar(monkeypatch):
     import builtins
     import sys
 
-    import sumakit
+    import minta_labs
 
     # Importar el submódulo lo deja pegado como atributo del paquete, y ahí
     # `__getattr__` ya no se consulta. Hay que quitar las dos copias.
-    monkeypatch.delitem(sys.modules, "sumakit.cluster", raising=False)
-    monkeypatch.delattr(sumakit, "cluster", raising=False)
+    monkeypatch.delitem(sys.modules, "minta_labs.cluster", raising=False)
+    monkeypatch.delattr(minta_labs, "cluster", raising=False)
     real = builtins.__import__
 
     def sin_sklearn(nombre, *a, **k):
@@ -216,4 +216,4 @@ def test_sin_sklearn_dice_que_extra_instalar(monkeypatch):
     monkeypatch.setattr(builtins, "__import__", sin_sklearn)
 
     with pytest.raises(ModuleNotFoundError, match="extra `ml`"):
-        _ = sumakit.cluster
+        _ = minta_labs.cluster

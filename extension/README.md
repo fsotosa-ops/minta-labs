@@ -1,10 +1,10 @@
-# sumakit · Entregables
+# minta-labs · Entregables
 
 La capa que le faltaba al editor: el análisis ya vive aquí, y ahora el
 entregable también.
 
 Un interruptor decide a quién le hablas —**academia** o **negocio**— y los
-comandos llaman al motor de Python. No reimplementa nada: `sumakit` ya genera
+comandos llaman al motor de Python. No reimplementa nada: `minta-labs` ya genera
 el PDF con citas, el deck editable, los gráficos con tema y la validación de
 daltonismo.
 
@@ -14,7 +14,7 @@ daltonismo.
 |---|---|
 | **Panel Entregables** | el taller, sus dos informes y tus figuras locales |
 | **Interruptor de audiencia** | un clic cambia qué se construye |
-| **Construir** | `sumakit render` para el PDF, o el script del deck |
+| **Construir** | `minta-labs render` para el PDF, o el script del deck |
 | **Deck en Slides** | embebe el editor de Google Slides dentro del IDE |
 | **Configurar el tema** | abre el configurador con validación de color |
 

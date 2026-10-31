@@ -118,7 +118,7 @@ def simulate_cvd(color: str, tipo: str) -> np.ndarray:
 
 # ─── Nombres viejos ──────────────────────────────────────────────────────────
 #
-# `sumakit.color` es la referencia contra la que suma-studio valida su puerto en
+# `minta_labs.color` es la referencia contra la que suma-studio valida su puerto en
 # TypeScript, así que sus nombres los lee más de un sitio.
 
 a_rgb = deprecated_alias(to_rgb, "a_rgb", "to_rgb", module="color")

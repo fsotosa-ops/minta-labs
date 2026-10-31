@@ -1,8 +1,8 @@
-"""`sumakit report init` y `sumakit render`.
+"""`minta-labs report init` y `minta-labs render`.
 
 Las plantillas viajan dentro del paquete, no dentro de un repositorio. Un
 proyecto nuevo —de la maestría, de un cliente, de lo que sea— corre
-`sumakit report init` y tiene los formatos disponibles sin copiar nada a mano.
+`minta-labs report init` y tiene los formatos disponibles sin copiar nada a mano.
 Esa es la diferencia entre una herramienta y un directorio que se clona.
 """
 
@@ -17,7 +17,7 @@ from pathlib import Path
 
 __all__ = ["init", "render", "main"]
 
-_PAQUETE = "sumakit.report"
+_PAQUETE = "minta_labs.report"
 _ESQUELETO_NEGOCIO = '''"""Construye el deck de negocio a partir del análisis del notebook.
 
 Se ejecuta, no se renderiza: `python negocio.py`. El resultado es un .pptx
@@ -29,8 +29,8 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 
-from sumakit import nb, theme
-from sumakit.deck import Deck
+from minta_labs import nb, theme
+from minta_labs.deck import Deck
 
 nb.setup(seed=42, palette=theme.LIGHT)
 
@@ -38,7 +38,7 @@ AQUI = Path(__file__).parent
 FIGURAS = AQUI / "figuras"
 FIGURAS.mkdir(exist_ok=True)
 
-# Genera aquí las figuras con sumakit.plots y guárdalas en FIGURAS/,
+# Genera aquí las figuras con minta_labs.plots y guárdalas en FIGURAS/,
 # o reutiliza las que el notebook ya exportó.
 
 d = Deck("{titulo}", subtitle="{autor}", footer="")
@@ -64,7 +64,7 @@ title: "{titulo}"
 author: "{autor}"
 date: today
 format:
-  sumakit/academico-pdf: default
+  minta-labs/academico-pdf: default
 bibliography: referencias.bib
 ---
 
@@ -203,19 +203,19 @@ def abrir_configurador() -> int:
     """Lanza el configurador de tema con Streamlit."""
     if shutil.which("streamlit") is None:
         print(
-            "El configurador necesita Streamlit:\n  uv add 'sumakit[ui]'   o   uv add streamlit",
+            "El configurador necesita Streamlit:\n  uv add 'minta-labs[ui]'   o   uv add streamlit",
             file=sys.stderr,
         )
         return 1
     from importlib import resources as _res
 
-    with _res.as_file(_res.files("sumakit.ui")) as raiz:
+    with _res.as_file(_res.files("minta_labs.ui")) as raiz:
         app = Path(raiz) / "configurador.py"
         return subprocess.run(["streamlit", "run", str(app)]).returncode
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Punto de entrada del ejecutable `sumakit`.
+    """Punto de entrada del ejecutable `minta-labs`.
 
     Args:
         argv: Argumentos de línea de órdenes. `None` usa los de `sys.argv`.
@@ -223,7 +223,7 @@ def main(argv: list[str] | None = None) -> int:
     Returns:
         El código de salida del proceso.
     """
-    parser = argparse.ArgumentParser(prog="sumakit", description=__doc__)
+    parser = argparse.ArgumentParser(prog="minta-labs", description=__doc__)
     sub = parser.add_subparsers(dest="comando", required=True)
 
     p_report = sub.add_parser("report", help="gestionar formatos de informe")

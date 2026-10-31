@@ -33,7 +33,7 @@ NOTEBOOK = """
 import matplotlib
 matplotlib.use("Agg")
 import numpy as np, pandas as pd
-from sumakit import nb, profile, stats, plots, cluster, explore
+from minta_labs import nb, profile, stats, plots, cluster, explore
 
 nb.setup(seed=42)
 rng = np.random.default_rng(0)
@@ -157,7 +157,7 @@ def test_todas_las_figuras_llegan_al_powerpoint(proyecto):
 
     Esto no bloquea el entregable y por eso es `xfail` y no un fallo: el informe
     sale por LaTeX, donde el censo está completo, y el deck lo produce
-    `sumakit.deck` con python-pptx, que no pasa por Pandoc. El `--to pptx` de
+    `minta_labs.deck` con python-pptx, que no pasa por Pandoc. El `--to pptx` de
     Quarto es la vía de conveniencia, y es la única que pierde figuras.
     """
     with zipfile.ZipFile(_render(proyecto, "pptx")) as z:

@@ -3,7 +3,7 @@
 import pandas as pd
 import pytest
 
-from sumakit import profile
+from minta_labs import profile
 
 
 def test_overview_cuenta_nulos_y_porcentajes(df):
@@ -199,21 +199,21 @@ def test_las_funciones_siguen_devolviendo_dataframes(df):
 
 
 def test_formato_adaptativo_no_usa_notacion_cientifica():
-    from sumakit.nb import adaptive_float
+    from minta_labs.nb import adaptive_float
 
     assert adaptive_float(1234567.0) == "1,234,567"
     assert adaptive_float(45678.9) == "45,679"
 
 
 def test_formato_adaptativo_conserva_las_proporciones_chicas():
-    from sumakit.nb import adaptive_float
+    from minta_labs.nb import adaptive_float
 
     assert adaptive_float(0.000123) == "0.000123"
     assert adaptive_float(0.4567) == "0.4567"
 
 
 def test_formato_adaptativo_casos_limite():
-    from sumakit.nb import adaptive_float
+    from minta_labs.nb import adaptive_float
 
     assert adaptive_float(0.0) == "0"
     assert adaptive_float(12.5) == "12.50"

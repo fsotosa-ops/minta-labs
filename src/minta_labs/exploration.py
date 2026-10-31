@@ -4,7 +4,7 @@ La comodidad de `ProfileReport(df)` sin su defecto: en vez de graficar las 26
 columnas y dejarte a ti encontrar cuál es el problema, grafica **solo lo que
 las alertas señalaron**. Cinco figuras que importan en vez de veintiséis que no.
 
-    resultado = sumakit.explore(df)      # en un notebook se dibuja solo
+    resultado = minta_labs.explore(df)      # en un notebook se dibuja solo
     resultado.alerts                     # y sigue siendo composable
     resultado.figures["distribuciones"].savefig("fig.svg")
 """

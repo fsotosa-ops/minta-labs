@@ -32,7 +32,7 @@ def apply_theme(palette: theme.Palette | None = None) -> None:
     """Registra y activa el tema de la librería en Altair."""
     pal = palette or theme.active()
 
-    @alt.theme.register("sumakit", enable=True)
+    @alt.theme.register("minta-labs", enable=True)
     def _tema() -> alt.theme.ThemeConfig:
         return {
             "config": {

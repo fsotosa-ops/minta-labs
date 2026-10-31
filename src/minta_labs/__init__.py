@@ -1,8 +1,8 @@
-"""sumakit — utilidades para talleres de ciencia de datos y machine learning.
+"""minta-labs — utilidades para talleres de ciencia de datos y machine learning.
 
 El ciclo de un taller, de los datos al entregable:
 
-    from sumakit import nb, profile, stats, plots
+    from minta_labs import nb, profile, stats, plots
     nb.setup(seed=42)
 
     profile.overview(df)                 # tabla: tipos, nulos, únicos, ceros
@@ -20,9 +20,9 @@ notebook llegue al PDF y a la lámina sin volver a maquetarla:
 Nada muta estado global y ninguna función trae paleta propia: todo sale del tema
 activo (`theme`).
 
-**sumakit diagnostica; no transforma ni ajusta.** El preprocesamiento es de
+**minta-labs diagnostica; no transforma ni ajusta.** El preprocesamiento es de
 scikit-learn, porque un transformador ajustado hay que reusarlo sobre test. El
-modelo lo ajustas tú, a la vista, y sumakit describe el resultado.
+modelo lo ajustas tú, a la vista, y minta-labs describe el resultado.
 """
 
 from __future__ import annotations
@@ -32,7 +32,7 @@ from importlib.metadata import PackageNotFoundError, version
 from typing import TYPE_CHECKING, Any
 
 try:
-    __version__ = version("sumakit")
+    __version__ = version("minta-labs")
 except PackageNotFoundError:  # pragma: no cover - checkout sin instalar
     # Una sola fuente de verdad: la versión vive en `pyproject.toml`. Escribirla
     # también aquí es cómo las dos se desincronizan sin que nadie lo note.
@@ -41,7 +41,7 @@ except PackageNotFoundError:  # pragma: no cover - checkout sin instalar
 # Los submódulos se cargan al pedirlos, no al importar el paquete.
 #
 # No es por las dependencias —el EDA y el entregable son el núcleo—, es por el
-# arranque: `import sumakit` con carga ansiosa levanta matplotlib, seaborn y
+# arranque: `import minta_labs` con carga ansiosa levanta matplotlib, seaborn y
 # python-pptx aunque solo vayas a mirar una tabla. Con PEP 562 cada módulo se
 # paga cuando se usa.
 _LAZY = {
@@ -101,15 +101,15 @@ def __getattr__(name: str) -> Any:
         return importlib.import_module(f".{name}", __name__)
     except ModuleNotFoundError as error:
         raise ModuleNotFoundError(
-            f"sumakit.{name} necesita dependencias que no están instaladas. "
-            f"{_LAZY[name]} Instálalo con: pip install 'sumakit[all]'"
+            f"minta_labs.{name} necesita dependencias que no están instaladas. "
+            f"{_LAZY[name]} Instálalo con: pip install 'minta-labs[all]'"
         ) from error
 
 
 def __dir__() -> list[str]:
     """Todo lo que el paquete ofrece: lo ya cargado y lo que espera perezoso.
 
-    Sin esto `dir(sumakit)` perdía `__doc__` y `__version__`, porque con PEP 562
+    Sin esto `dir(minta_labs)` perdía `__doc__` y `__version__`, porque con PEP 562
     nada es atributo real hasta que se lo pide. Y con `globals()` a secas se iba
     al otro extremo: `importlib`, `Any` y `TYPE_CHECKING` ensuciando el
     autocompletado del notebook, que es donde esto se mira.

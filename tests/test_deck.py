@@ -9,8 +9,8 @@ import pytest
 from pptx import Presentation
 from pptx.util import Inches
 
-from sumakit import plots
-from sumakit.deck import Deck, TituloNoAccionable
+from minta_labs import plots
+from minta_labs.deck import Deck, TituloNoAccionable
 
 HALLAZGO = "Dos tercios de la cartera realizó tres transacciones o menos en el mes"
 
@@ -127,7 +127,7 @@ def test_el_archivo_guardado_se_puede_reabrir(tmp_path):
 
 
 def test_usa_el_color_de_acento_del_tema():
-    from sumakit import theme
+    from minta_labs import theme
 
     d = Deck("d", palette=theme.LIGHT)
     assert str(d._acento) == theme.LIGHT.categorical[0].lstrip("#").upper()
@@ -243,7 +243,7 @@ def test_el_hero_usa_el_acento_para_la_cifra():
 
 
 def test_el_tema_oscuro_cambia_el_fondo():
-    from sumakit import theme
+    from minta_labs import theme
 
     claro, oscuro = Deck("d", palette=theme.LIGHT), Deck("d", palette=theme.DARK)
     assert claro._fondo != oscuro._fondo

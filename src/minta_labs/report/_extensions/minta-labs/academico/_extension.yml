@@ -1,5 +1,5 @@
 title: Informe académico
-author: sumakit
+author: minta-labs
 version: 0.1.0
 quarto-required: ">=1.4.0"
 contributes:
@@ -17,9 +17,9 @@ contributes:
       number-sections: true
       toc: false
       colorlinks: true
-      linkcolor: sumakitaccent
-      citecolor: sumakitaccent
-      urlcolor: sumakitaccent
+      linkcolor: mintalabsaccent
+      citecolor: mintalabsaccent
+      urlcolor: mintalabsaccent
       cite-method: citeproc
       fig-align: center
       fig-width: 6.5

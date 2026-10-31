@@ -8,7 +8,7 @@ Lo que ninguna herramienta de diseño hace, y esta sí: **revalida la paleta en
 cada cambio**. Si eliges dos colores que un lector con deuteranopía no
 distingue, te lo dice ahí mismo, antes de que ese deck llegue a un cliente.
 
-    sumakit theme
+    minta-labs theme
 """
 
 from __future__ import annotations
@@ -25,7 +25,7 @@ import streamlit as st
 
 # Absolutos y no relativos: `streamlit run` ejecuta este archivo como
 # script suelto, sin paquete padre, y los relativos revientan.
-from sumakit import theme
+from minta_labs import theme
 
 _ARCHIVO = "tema.json"
 _CAMPOS_COLOR = [
@@ -68,7 +68,7 @@ def _figura_ejemplo(pal: theme.Palette):
 
 
 def _lamina_ejemplo(pal: theme.Palette):
-    """Boceto de una lámina con la misma geometría que usa `sumakit.deck`."""
+    """Boceto de una lámina con la misma geometría que usa `minta_labs.deck`."""
     fig = plt.figure(figsize=(9, 5.06))
     fig.patch.set_facecolor(pal.surface)
     ax = fig.add_axes((0, 0, 1, 1))
@@ -105,7 +105,7 @@ def _lamina_ejemplo(pal: theme.Palette):
 
 def principal() -> None:
     """Corre el configurador de tema en Streamlit."""
-    st.set_page_config(page_title="Tema · sumakit", layout="wide")
+    st.set_page_config(page_title="Tema · minta-labs", layout="wide")
     base = theme.LIGHT
 
     st.sidebar.title("Tema")
@@ -174,7 +174,7 @@ def principal() -> None:
             )
             st.success(f"Escrito en {ruta.resolve()}")
             st.code(
-                f'from sumakit import theme\ntheme.use(theme.load("{ruta}"))', language="python"
+                f'from minta_labs import theme\ntheme.use(theme.load("{ruta}"))', language="python"
             )
 
 

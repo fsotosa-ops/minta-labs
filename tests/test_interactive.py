@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from sumakit import interactive
+from minta_labs import interactive
 
 
 @pytest.fixture
@@ -127,8 +127,8 @@ def test_el_filtro_agrega_un_desplegable(comp):
 
 
 def test_usa_la_paleta_de_la_libreria(comp):
-    from sumakit import theme
+    from minta_labs import theme
 
     interactive.apply_theme(theme.LIGHT)
     cfg = alt.theme.active
-    assert cfg == "sumakit"
+    assert cfg == "minta-labs"

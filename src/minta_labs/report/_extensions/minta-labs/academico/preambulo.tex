@@ -1,27 +1,27 @@
-% Preámbulo del formato académico de sumakit.
+% Preámbulo del formato académico de minta-labs.
 % El color de acento se sincroniza con theme.Palette: si cambias la paleta,
-% regenera este archivo con `sumakit report init --force`.
+% regenera este archivo con `minta-labs report init --force`.
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{microtype}
 \usepackage[table]{xcolor}
 
-\definecolor{sumakitaccent}{HTML}{2A78D6}
-\definecolor{sumakitink}{HTML}{0B0B0B}
-\definecolor{sumakitmuted}{HTML}{52514E}
+\definecolor{mintalabsaccent}{HTML}{2A78D6}
+\definecolor{mintalabsink}{HTML}{0B0B0B}
+\definecolor{mintalabsmuted}{HTML}{52514E}
 
 % Encabezados de sección en el acento: la única licencia de color del
 % documento, para que la estructura se lea sin saturar la página.
 \usepackage{titlesec}
-\titleformat{\section}{\normalfont\Large\bfseries\color{sumakitaccent}}{\thesection}{1em}{}
-\titleformat{\subsection}{\normalfont\large\bfseries\color{sumakitink}}{\thesubsection}{1em}{}
+\titleformat{\section}{\normalfont\Large\bfseries\color{mintalabsaccent}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{mintalabsink}}{\thesubsection}{1em}{}
 
 % Las tablas de pandas salen con reglas de booktabs y sin líneas verticales.
 \renewcommand{\arraystretch}{1.15}
 
 % Pies de figura y tabla en gris: acompañan, no compiten.
 \usepackage{caption}
-\captionsetup{font=small, labelfont=bf, textfont={color=sumakitmuted}}
+\captionsetup{font=small, labelfont=bf, textfont={color=mintalabsmuted}}
 
 % Las tablas de un perfilado traen columnas de texto largo —listas de nombres
 % de variables— que se salen del margen. Reducir el cuerpo dentro del entorno

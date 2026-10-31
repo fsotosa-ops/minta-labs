@@ -2295,6 +2295,103 @@ wheels = [
 ]
 
 [[package]]
+name = "minta-labs"
+version = "0.4.0"
+source = { editable = "." }
+dependencies = [
+    { name = "ipython", version = "8.39.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "ipython", version = "9.16.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "jinja2" },
+    { name = "matplotlib", version = "3.10.9", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "matplotlib", version = "3.11.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.11.*'" },
+    { name = "numpy", version = "2.5.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "pandas", version = "3.0.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "pillow" },
+    { name = "python-pptx" },
+    { name = "seaborn" },
+    { name = "tabulate" },
+]
+
+[package.optional-dependencies]
+all = [
+    { name = "altair" },
+    { name = "dlt" },
+    { name = "scikit-learn", version = "1.7.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "scikit-learn", version = "1.9.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "streamlit" },
+]
+extract = [
+    { name = "dlt" },
+]
+interactive = [
+    { name = "altair" },
+]
+ml = [
+    { name = "scikit-learn", version = "1.7.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "scikit-learn", version = "1.9.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+]
+ui = [
+    { name = "streamlit" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "ipykernel" },
+    { name = "ipython", version = "8.39.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "ipython", version = "9.16.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "mypy" },
+    { name = "nbformat" },
+    { name = "pre-commit" },
+    { name = "pytest" },
+    { name = "pyyaml" },
+    { name = "quarto-cli" },
+    { name = "ruff" },
+    { name = "scikit-learn", version = "1.7.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "scikit-learn", version = "1.9.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "streamlit" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "altair", marker = "extra == 'interactive'", specifier = ">=6.2.2" },
+    { name = "dlt", marker = "extra == 'extract'", specifier = ">=1.0" },
+    { name = "ipython", specifier = ">=8.0" },
+    { name = "jinja2", specifier = ">=3.1.6" },
+    { name = "matplotlib", specifier = ">=3.7" },
+    { name = "minta-labs", extras = ["extract"], marker = "extra == 'all'" },
+    { name = "minta-labs", extras = ["interactive"], marker = "extra == 'all'" },
+    { name = "minta-labs", extras = ["ml"], marker = "extra == 'all'" },
+    { name = "minta-labs", extras = ["ui"], marker = "extra == 'all'" },
+    { name = "numpy", specifier = ">=1.24" },
+    { name = "pandas", specifier = ">=2.0" },
+    { name = "pillow", specifier = ">=12.3.0" },
+    { name = "python-pptx", specifier = ">=1.0.2" },
+    { name = "scikit-learn", marker = "extra == 'ml'", specifier = ">=1.3" },
+    { name = "seaborn", specifier = ">=0.13" },
+    { name = "streamlit", marker = "extra == 'ui'", specifier = ">=1.36" },
+    { name = "tabulate", specifier = ">=0.10.0" },
+]
+provides-extras = ["ml", "interactive", "eda", "report", "extract", "ui", "all"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "ipykernel", specifier = ">=7.3.0" },
+    { name = "ipython", specifier = ">=8.39.0" },
+    { name = "mypy", specifier = ">=1.14" },
+    { name = "nbformat", specifier = ">=5.11.1" },
+    { name = "pre-commit", specifier = ">=4.0" },
+    { name = "pytest", specifier = ">=8.0" },
+    { name = "pyyaml", specifier = ">=6.0.3" },
+    { name = "quarto-cli", specifier = ">=1.10.18" },
+    { name = "ruff", specifier = ">=0.9" },
+    { name = "scikit-learn", specifier = ">=1.7.2" },
+    { name = "streamlit", specifier = ">=1.62.0" },
+]
+
+[[package]]
 name = "mistune"
 version = "3.3.4"
 source = { registry = "https://pypi.org/simple" }
@@ -4602,103 +4699,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/50/94/928c44a8b7bcd602fc4a16025e9868bcdb88b92bcdb2e53dec188d034fc4/streamlit-1.62.0.tar.gz", hash = "sha256:9d2571da6e6799cbaf0f59548f5773926260a87a69807cf3e2f0f68f9f5e4d45", size = 9883501, upload-time = "2026-08-19T18:31:22.864Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2b/57/78864764c53885db8a378cc1c47329b4b6e095f7ebd89cd1ffcca4027c89/streamlit-1.62.0-py3-none-any.whl", hash = "sha256:294dbcfe0d6531b0d8593a095e6872dcc6ec4b731723fbb318a0f8102e69162e", size = 10490146, upload-time = "2026-08-19T18:31:19.957Z" },
-]
-
-[[package]]
-name = "sumakit"
-version = "0.3.0"
-source = { editable = "." }
-dependencies = [
-    { name = "ipython", version = "8.39.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "ipython", version = "9.16.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-    { name = "jinja2" },
-    { name = "matplotlib", version = "3.10.9", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "matplotlib", version = "3.11.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.11.*'" },
-    { name = "numpy", version = "2.5.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
-    { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "pandas", version = "3.0.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-    { name = "pillow" },
-    { name = "python-pptx" },
-    { name = "seaborn" },
-    { name = "tabulate" },
-]
-
-[package.optional-dependencies]
-all = [
-    { name = "altair" },
-    { name = "dlt" },
-    { name = "scikit-learn", version = "1.7.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "scikit-learn", version = "1.9.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-    { name = "streamlit" },
-]
-extract = [
-    { name = "dlt" },
-]
-interactive = [
-    { name = "altair" },
-]
-ml = [
-    { name = "scikit-learn", version = "1.7.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "scikit-learn", version = "1.9.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-]
-ui = [
-    { name = "streamlit" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "ipykernel" },
-    { name = "ipython", version = "8.39.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "ipython", version = "9.16.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-    { name = "mypy" },
-    { name = "nbformat" },
-    { name = "pre-commit" },
-    { name = "pytest" },
-    { name = "pyyaml" },
-    { name = "quarto-cli" },
-    { name = "ruff" },
-    { name = "scikit-learn", version = "1.7.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "scikit-learn", version = "1.9.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-    { name = "streamlit" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "altair", marker = "extra == 'interactive'", specifier = ">=6.2.2" },
-    { name = "dlt", marker = "extra == 'extract'", specifier = ">=1.0" },
-    { name = "ipython", specifier = ">=8.0" },
-    { name = "jinja2", specifier = ">=3.1.6" },
-    { name = "matplotlib", specifier = ">=3.7" },
-    { name = "numpy", specifier = ">=1.24" },
-    { name = "pandas", specifier = ">=2.0" },
-    { name = "pillow", specifier = ">=12.3.0" },
-    { name = "python-pptx", specifier = ">=1.0.2" },
-    { name = "scikit-learn", marker = "extra == 'ml'", specifier = ">=1.3" },
-    { name = "seaborn", specifier = ">=0.13" },
-    { name = "streamlit", marker = "extra == 'ui'", specifier = ">=1.36" },
-    { name = "sumakit", extras = ["extract"], marker = "extra == 'all'" },
-    { name = "sumakit", extras = ["interactive"], marker = "extra == 'all'" },
-    { name = "sumakit", extras = ["ml"], marker = "extra == 'all'" },
-    { name = "sumakit", extras = ["ui"], marker = "extra == 'all'" },
-    { name = "tabulate", specifier = ">=0.10.0" },
-]
-provides-extras = ["ml", "interactive", "eda", "report", "extract", "ui", "all"]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "ipykernel", specifier = ">=7.3.0" },
-    { name = "ipython", specifier = ">=8.39.0" },
-    { name = "mypy", specifier = ">=1.14" },
-    { name = "nbformat", specifier = ">=5.11.1" },
-    { name = "pre-commit", specifier = ">=4.0" },
-    { name = "pytest", specifier = ">=8.0" },
-    { name = "pyyaml", specifier = ">=6.0.3" },
-    { name = "quarto-cli", specifier = ">=1.10.18" },
-    { name = "ruff", specifier = ">=0.9" },
-    { name = "scikit-learn", specifier = ">=1.7.2" },
-    { name = "streamlit", specifier = ">=1.62.0" },
 ]
 
 [[package]]

@@ -1,4 +1,4 @@
-# sumakit
+# minta-labs
 
 **Utilidades para talleres de ciencia de datos y machine learning.** El ciclo de
 un taller: perfilar, diagnosticar, modelar —eso último lo hace scikit-learn— y
@@ -29,7 +29,7 @@ Hay dos razones y las dos importan:
   él produce un artefacto peor que el estándar.
 - **Académica**: esto se usa en talleres donde lo evaluado es que sepas aplicar
   el método. Si `KMeans(n_clusters=k, random_state=42)` queda escondido dentro
-  de una función de sumakit, el profesor no puede ver lo que vino a ver. La
+  de una función de minta-labs, el profesor no puede ver lo que vino a ver. La
   llamada al método tiene que estar en la celda.
 
 Corolario para funciones nuevas de modelado: reciben `labels` o modelos ya
@@ -70,10 +70,10 @@ notebook y en Colab, y los dos quieren dibujar.
 
 Detrás de extras queda solo `ml` (scikit-learn) e `interactive` (altair). Los
 extras `eda` y `report` se conservan **vacíos**, porque hay notebooks con
-`pip install "sumakit[eda]"` escrito dentro.
+`pip install "minta-labs[eda]"` escrito dentro.
 
 La carga perezosa de `__init__.py` (PEP 562) **se queda**, pero por otro motivo:
-ya no es para poder instalar sin extras, es para que `import sumakit` no cueste
+ya no es para poder instalar sin extras, es para que `import minta_labs` no cueste
 el arranque de matplotlib y seaborn cuando solo vas a mirar una tabla. El CI lo
 comprueba.
 
@@ -104,7 +104,7 @@ corriendo, pero el paquete no va por ahí hoy.
 Dos consecuencias de que esté en stand-by:
 
 - **El `ADR-0009` no aplica aquí.** Mandaba retirar `deck` y `report` de este
-  paquete porque el render sería de Studio. Sin Studio, el render es de sumakit
+  paquete porque el render sería de Studio. Sin Studio, el render es de minta-labs
   y `deck` es ciudadano de primera.
-- `lib/color/index.ts` en la app es un puerto de `sumakit.color` sostenido por
+- `lib/color/index.ts` en la app es un puerto de `minta_labs.color` sostenido por
   `fixture-del-motor.json`. Mientras exista se mantiene, pero no se amplía.

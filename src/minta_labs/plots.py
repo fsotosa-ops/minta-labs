@@ -519,7 +519,7 @@ def silhouette(
         from sklearn.metrics import silhouette_samples
     except ImportError as error:  # pragma: no cover - depende del entorno
         raise ModuleNotFoundError(
-            "plots.silhouette necesita scikit-learn. Instálalo con: pip install 'sumakit[ml]'"
+            "plots.silhouette necesita scikit-learn. Instálalo con: pip install 'minta-labs[ml]'"
         ) from error
 
     etiquetas = np.asarray(labels)

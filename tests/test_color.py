@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from sumakit import color, theme
+from minta_labs import color, theme
 
 
 def test_contraste_maximo_es_21():

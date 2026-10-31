@@ -39,7 +39,7 @@ class Entregables {
       ];
     }
 
-    const audiencia = vscode.workspace.getConfiguration("sumakit").get("audiencia");
+    const audiencia = vscode.workspace.getConfiguration("mintaLabs").get("audiencia");
 
     if (!padre) {
       return [
@@ -49,7 +49,7 @@ class Entregables {
           {
             description: "clic para cambiar",
             iconPath: new vscode.ThemeIcon(ICONO[audiencia]),
-            command: { command: "sumakit.cambiarAudiencia", title: "Cambiar" },
+            command: { command: "mintaLabs.cambiarAudiencia", title: "Cambiar" },
             contextValue: "audiencia",
           }
         ),

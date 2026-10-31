@@ -1,13 +1,13 @@
 [project]
-name = "sumakit"
-version = "0.3.0"
+name = "minta-labs"
+version = "0.4.0"
 description = "Utilidades para talleres de ciencia de datos: perfilado, diagnóstico estadístico, gráficos con un tema consistente y el entregable."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 # El paquete corre en dos sitios —un notebook local y Colab— y los dos quieren
 # dibujar. Por eso el EDA y el entregable son el núcleo y no un extra: un
-# `pip install sumakit` que no puede hacer un histograma no sirve para nada, y
+# `pip install minta-labs` que no puede hacer un histograma no sirve para nada, y
 # tener que acordarse de `[eda,report]` es una forma de romperse en silencio.
 #
 # Detrás de extras queda solo lo que de verdad es opcional: scikit-learn, que no
@@ -35,7 +35,7 @@ ml = ["scikit-learn>=1.3"]
 interactive = ["altair>=6.2.2"]
 
 # `eda` y `report` se vacían, no se borran: hay notebooks con
-# `pip install "sumakit[eda]"` escrito dentro, y un extra que no existe es un
+# `pip install "minta-labs[eda]"` escrito dentro, y un extra que no existe es un
 # error de instalación. Lo que pedían ya viene en el núcleo.
 eda = []
 report = []
@@ -46,10 +46,10 @@ extract = ["dlt>=1.0"]
 ui = ["streamlit>=1.36"]
 
 all = [
-    "sumakit[ml]",
-    "sumakit[interactive]",
-    "sumakit[extract]",
-    "sumakit[ui]",
+    "minta-labs[ml]",
+    "minta-labs[interactive]",
+    "minta-labs[extract]",
+    "minta-labs[ui]",
 ]
 
 [dependency-groups]
@@ -68,16 +68,16 @@ dev = [
 ]
 
 [project.scripts]
-sumakit = "sumakit.report.cli:main"
+minta-labs = "minta_labs.report.cli:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/sumakit"]
+packages = ["src/minta_labs"]
 # Las extensiones de Quarto viajan con el paquete, no con un repositorio.
-artifacts = ["src/sumakit/report/_extensions/**"]
+artifacts = ["src/minta_labs/report/_extensions/**"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -142,12 +142,12 @@ convention = "google"
 # mypy no pueda leer los stubs de numpy, que usan `type` de 3.12 — y el error
 # sale dentro de numpy, no del código de aquí. El paquete sigue soportando 3.10
 # en ejecución; lo que se comprueba es la versión con la que corre el CI.
-files = ["src/sumakit"]
+files = ["src/minta_labs"]
 ignore_missing_imports = true
 warn_unused_ignores = true
 warn_redundant_casts = true
 
 [[tool.mypy.overrides]]
-module = ["sumakit.studio", "sumakit.theme"]
+module = ["minta_labs.studio", "minta_labs.theme"]
 disallow_untyped_defs = true
 disallow_incomplete_defs = true

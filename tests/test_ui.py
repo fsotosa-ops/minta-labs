@@ -11,10 +11,10 @@ matplotlib.use("Agg")
 import pytest
 from matplotlib.figure import Figure
 
-from sumakit import theme
+from minta_labs import theme
 
 pytest.importorskip("streamlit")
-from sumakit.ui import configurador  # noqa: E402
+from minta_labs.ui import configurador  # noqa: E402
 
 
 def test_la_figura_de_ejemplo_usa_el_tema():
@@ -33,7 +33,7 @@ def test_la_previsualizacion_no_ensucia_el_tema_activo():
 
 
 def test_la_lamina_de_ejemplo_respeta_la_geometria_del_deck():
-    from sumakit import deck
+    from minta_labs import deck
 
     fig = configurador._lamina_ejemplo(theme.LIGHT)
     ax = fig.axes[0]

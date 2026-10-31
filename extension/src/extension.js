@@ -1,5 +1,5 @@
 /**
- * sumakit · Entregables
+ * minta-labs · Entregables
  *
  * La capa que le faltaba al IDE: el análisis ya vive aquí, y ahora el
  * entregable también. Un interruptor decide a quién le hablas —academia o
@@ -13,12 +13,12 @@ const { describir } = require("./proyecto");
 const slides = require("./slides");
 
 function ajustes() {
-  return vscode.workspace.getConfiguration("sumakit");
+  return vscode.workspace.getConfiguration("mintaLabs");
 }
 
 function terminal() {
-  const existente = vscode.window.terminals.find((t) => t.name === "sumakit");
-  return existente || vscode.window.createTerminal("sumakit");
+  const existente = vscode.window.terminals.find((t) => t.name === "minta-labs");
+  return existente || vscode.window.createTerminal("minta-labs");
 }
 
 async function cambiarAudiencia() {
@@ -28,8 +28,8 @@ async function cambiarAudiencia() {
   await cfg.update("audiencia", nueva, vscode.ConfigurationTarget.Workspace);
   vscode.window.setStatusBarMessage(
     nueva === "academia"
-      ? "sumakit · construyendo para academia (PDF con citas)"
-      : "sumakit · construyendo para negocio (deck editable)",
+      ? "minta-labs · construyendo para academia (PDF con citas)"
+      : "minta-labs · construyendo para negocio (deck editable)",
     4000
   );
 }
@@ -47,7 +47,7 @@ function construir() {
 
   if (audiencia === "academia") {
     t.sendText(
-      `${python} sumakit render "${p.academico}" --salida "${p.entrega}"`
+      `${python} minta-labs render "${p.academico}" --salida "${p.entrega}"`
     );
   } else {
     t.sendText(`${python} python "${p.negocio}"`);
@@ -57,23 +57,23 @@ function construir() {
 function abrirTema() {
   const t = terminal();
   t.show(true);
-  t.sendText(`${ajustes().get("python") || "uv run"} sumakit theme`);
+  t.sendText(`${ajustes().get("python") || "uv run"} minta-labs theme`);
 }
 
 function activate(contexto) {
   const arbol = new Entregables();
   contexto.subscriptions.push(
-    vscode.window.registerTreeDataProvider("sumakit.entregables", arbol),
-    vscode.commands.registerCommand("sumakit.cambiarAudiencia", async () => {
+    vscode.window.registerTreeDataProvider("mintaLabs.entregables", arbol),
+    vscode.commands.registerCommand("mintaLabs.cambiarAudiencia", async () => {
       await cambiarAudiencia();
       arbol.refrescar();
     }),
-    vscode.commands.registerCommand("sumakit.construir", construir),
-    vscode.commands.registerCommand("sumakit.abrirSlides", () => slides.abrir(contexto)),
-    vscode.commands.registerCommand("sumakit.abrirTema", abrirTema),
-    vscode.commands.registerCommand("sumakit.refrescar", () => arbol.refrescar()),
+    vscode.commands.registerCommand("mintaLabs.construir", construir),
+    vscode.commands.registerCommand("mintaLabs.abrirSlides", () => slides.abrir(contexto)),
+    vscode.commands.registerCommand("mintaLabs.abrirTema", abrirTema),
+    vscode.commands.registerCommand("mintaLabs.refrescar", () => arbol.refrescar()),
     vscode.workspace.onDidChangeConfiguration((e) => {
-      if (e.affectsConfiguration("sumakit")) arbol.refrescar();
+      if (e.affectsConfiguration("mintaLabs")) arbol.refrescar();
     })
   );
 }

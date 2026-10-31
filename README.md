@@ -1,6 +1,6 @@
-# sumakit
+# minta-labs
 
-[![verificar](https://github.com/fsotosa-ops/sumakit/actions/workflows/verificar.yml/badge.svg)](https://github.com/fsotosa-ops/sumakit/actions/workflows/verificar.yml)
+[![verificar](https://github.com/fsotosa-ops/minta-labs/actions/workflows/verificar.yml/badge.svg)](https://github.com/fsotosa-ops/minta-labs/actions/workflows/verificar.yml)
 
 **Utilidades para talleres de ciencia de datos y machine learning.** El ciclo
 completo: perfilar los datos, diagnosticarlos, y salir con un informe y una
@@ -9,10 +9,10 @@ presentación que no parezcan generados por defecto.
 ## Instalación
 
 ```bash
-pip install "sumakit @ git+https://github.com/fsotosa-ops/sumakit.git"
+pip install "minta-labs @ git+https://github.com/fsotosa-ops/minta-labs.git"
 ```
 
-Sirve igual en Colab. **No hace falta pedir extras**: un `pip install sumakit`
+Sirve igual en Colab. **No hace falta pedir extras**: un `pip install minta-labs`
 a secas hace el taller completo, y el CI lo comprueba en un entorno donde solo
 está el núcleo. Detrás de extras queda lo que de verdad es opcional:
 
@@ -24,7 +24,7 @@ está el núcleo. Detrás de extras queda lo que de verdad es opcional:
 ## El EDA
 
 ```python
-from sumakit import nb, profile, stats, plots
+from minta_labs import nb, profile, stats, plots
 
 nb.setup(seed=42)
 
@@ -60,7 +60,7 @@ sale del tema activo.
 
 ```python
 from sklearn.cluster import KMeans
-from sumakit import cluster, plots, profile
+from minta_labs import cluster, plots, profile
 
 modelos = {k: KMeans(n_clusters=k, random_state=42, n_init=10).fit(X) for k in range(2, 9)}
 
@@ -84,24 +84,24 @@ Necesita el extra `ml`.
 
 El preprocesamiento es de scikit-learn, porque un transformador ajustado hay que
 reusarlo sobre test y ese contrato es suyo. El modelo lo ajustas tú, a la vista,
-y sumakit describe el resultado. En un taller eso importa: lo que se evalúa es
+y minta-labs describe el resultado. En un taller eso importa: lo que se evalúa es
 que sepas aplicar el método, así que la llamada al método tiene que verse.
 
 ## El entregable
 
 ```python
-from sumakit import deck
+from minta_labs import deck
 ```
 
 `deck` produce el `.pptx`: portada, agenda, hallazgos con título accionable
 —`NonActionableTitleError` si el título no dice nada—, tablas y lámina de cifra.
-Y `sumakit` como comando instala el formato académico de Quarto en cualquier
+Y `minta-labs` como comando instala el formato académico de Quarto en cualquier
 proyecto, con el preámbulo de LaTeX que hace que las tablas quepan.
 
 ## Re-skinear por cliente
 
 ```python
-from sumakit import theme
+from minta_labs import theme
 marca = theme.Palette(name="cliente", categorical=(...), ...)
 theme.use(marca)
 ```

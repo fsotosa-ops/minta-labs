@@ -41,7 +41,7 @@ test("la CSP solo permite marcos de docs.google.com", () => {
 test("sin URL muestra una explicación, no un marco vacío", () => {
   const html = slides.pagina(null, "abc123");
   assert.ok(!html.includes("<iframe"));
-  assert.ok(html.includes("sumakit.slidesUrl"));
+  assert.ok(html.includes("mintaLabs.slidesUrl"));
 });
 
 test("sin carpeta abierta lo dice en vez de fallar", () => {

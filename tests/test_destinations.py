@@ -9,8 +9,8 @@ import pytest
 
 dlt = pytest.importorskip("dlt")
 
-from sumakit import destinations  # noqa: E402
-from sumakit.studio import StudioError  # noqa: E402
+from minta_labs import destinations  # noqa: E402
+from minta_labs.studio import StudioError  # noqa: E402
 
 
 @pytest.fixture
@@ -24,7 +24,7 @@ def spy(monkeypatch, tmp_path):
         enviado["rows"] = len(table)
         return None
 
-    monkeypatch.setattr("sumakit.studio.StudioClient.publish", fake_publish)
+    monkeypatch.setattr("minta_labs.studio.StudioClient.publish", fake_publish)
     monkeypatch.setenv("SUMA_STUDIO_KEY", "sk_prueba")
     return enviado
 

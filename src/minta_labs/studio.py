@@ -4,7 +4,7 @@ El EDA termina en un notebook que nadie reabre. Este módulo es el puente: la
 tabla que acabas de mirar se publica en el proyecto y desde ahí alimenta el
 deck y el informe, sin exportar un CSV a mano ni pegar una captura.
 
-    from sumakit import studio
+    from minta_labs import studio
 
     client = studio.StudioClient("sk_...")   # la clave que da la app
     client.publish(alerts, "alertas")        # un DataFrame → una tabla del proyecto

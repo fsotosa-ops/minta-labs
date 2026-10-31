@@ -8,13 +8,13 @@ import numpy as np
 import pandas as pd
 from matplotlib.figure import Figure
 
-import sumakit
-from sumakit import plots
+import minta_labs
+from minta_labs import plots
 
 
 def test_explore_devuelve_tablas_y_figuras(df):
-    r = sumakit.explore(df)
-    assert isinstance(r, sumakit.Exploration)
+    r = minta_labs.explore(df)
+    assert isinstance(r, minta_labs.Exploration)
     assert isinstance(r.alerts, pd.DataFrame)
     assert isinstance(r.overview, pd.DataFrame)
     assert r.figures, "debería producir al menos una figura"
@@ -23,7 +23,7 @@ def test_explore_devuelve_tablas_y_figuras(df):
 
 def test_solo_grafica_lo_señalado(df):
     """La promesa central: no grafica las 26 columnas, solo las marcadas."""
-    r = sumakit.explore(df)
+    r = minta_labs.explore(df)
     fig = r.figures.get("distribuciones señaladas")
     assert fig is not None
     n_sesgadas = len(r.alerts[r.alerts["chequeo"] == "asimetría"].iloc[0]["columnas"].split(","))
@@ -34,39 +34,39 @@ def test_solo_grafica_lo_señalado(df):
 
 def test_sin_nulos_no_dibuja_el_mapa_de_faltantes():
     d = pd.DataFrame({"a": np.arange(100.0), "b": np.random.default_rng(0).normal(size=100)})
-    r = sumakit.explore(d)
+    r = minta_labs.explore(d)
     assert "datos faltantes" not in r.figures
 
 
 def test_con_nulos_si_lo_dibuja(df):
-    r = sumakit.explore(df)
+    r = minta_labs.explore(df)
     assert "datos faltantes" in r.figures
 
 
 def test_repr_html_trae_las_tablas(df):
     """El HTML lleva las tablas; las figuras van como salidas aparte."""
-    html = sumakit.explore(df)._repr_html_()
+    html = minta_labs.explore(df)._repr_html_()
     assert "Qué revisar" in html
     assert "<table" in html
 
 
 def test_repr_texto_es_informativo(df):
-    assert "alertas" in repr(sumakit.explore(df))
+    assert "alertas" in repr(minta_labs.explore(df))
 
 
 def test_puede_saltarse_la_busqueda_composicional(df):
-    r = sumakit.explore(df, compositional=False)
+    r = minta_labs.explore(df, compositional=False)
     assert r.compositional.empty
 
 
 def test_no_deja_estado_global_sucio(df):
     import matplotlib.pyplot as plt
 
-    from sumakit import theme
+    from minta_labs import theme
 
     theme.use(theme.LIGHT)
     antes = dict(plt.rcParams)
-    sumakit.explore(df)
+    minta_labs.explore(df)
     plt.close("all")
     assert not {k for k in antes if plt.rcParams[k] != antes[k]}
 
@@ -98,7 +98,7 @@ def test_ranking_dibuja_la_referencia():
 
 def test_la_grilla_queda_detras_de_las_marcas():
     """Una grilla encima de las barras las corta visualmente."""
-    from sumakit import theme
+    from minta_labs import theme
 
     theme.use(theme.LIGHT)
     fig = plots.ranking(pd.Series({"a": 1.0, "b": 2.0}))
@@ -115,7 +115,7 @@ def test_no_deja_figuras_en_el_registro_de_pyplot(df):
     import matplotlib.pyplot as plt
 
     plt.close("all")
-    r = sumakit.explore(df)
+    r = minta_labs.explore(df)
     assert r.figures, "el caso solo tiene sentido si se generaron figuras"
     assert plt.get_fignums() == [], "quedaron figuras abiertas: se verán duplicadas"
 
@@ -123,7 +123,7 @@ def test_no_deja_figuras_en_el_registro_de_pyplot(df):
 def test_las_figuras_siguen_siendo_usables_tras_cerrarlas(df):
     import io
 
-    r = sumakit.explore(df)
+    r = minta_labs.explore(df)
     fig = next(iter(r.figures.values()))
     buf = io.BytesIO()
     fig.savefig(buf, format="png")
@@ -136,7 +136,7 @@ def test_las_figuras_no_viajan_dentro_del_html(df):
     Incrustadas en base64 se pierden al renderizar a PDF o a PowerPoint: ni
     LaTeX ni PowerPoint leen un `<img>` dentro de un blob HTML.
     """
-    r = sumakit.explore(df)
+    r = minta_labs.explore(df)
     assert "<img" not in r._repr_html_()
 
 
@@ -146,7 +146,7 @@ def test_las_figuras_se_emiten_como_salidas_propias(df, monkeypatch):
     import IPython.display as ipd
 
     monkeypatch.setattr(ipd, "display", lambda obj: emitidos.append(obj))
-    r = sumakit.explore(df)
+    r = minta_labs.explore(df)
     r._ipython_display_()
     from matplotlib.figure import Figure
 
@@ -155,6 +155,6 @@ def test_las_figuras_se_emiten_como_salidas_propias(df, monkeypatch):
 
 
 def test_el_html_ya_no_incrusta_imagenes(df):
-    r = sumakit.explore(df)
+    r = minta_labs.explore(df)
     assert "<img" not in r._repr_html_(), "las imágenes van aparte, no dentro del HTML"
     assert "Qué revisar" in r._repr_html_()

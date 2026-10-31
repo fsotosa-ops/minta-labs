@@ -115,7 +115,7 @@ class Palette:
 
 
 LIGHT = Palette(
-    name="sumakit-light",
+    name="minta-labs-light",
     categorical=(
         "#2a78d6",  # azul
         "#eb6834",  # naranja
@@ -147,7 +147,7 @@ LIGHT = Palette(
 
 DARK = replace(
     LIGHT,
-    name="sumakit-dark",
+    name="minta-labs-dark",
     categorical=(
         "#3987e5",
         "#d95926",

@@ -47,7 +47,7 @@ ${
     : `<div class="vacio">
         <p>No hay ninguna presentación configurada.</p>
         <p>Pega la URL de tu deck de Google Slides en el ajuste
-        <code>sumakit.slidesUrl</code> y vuelve a abrir este panel.</p>
+        <code>mintaLabs.slidesUrl</code> y vuelve a abrir este panel.</p>
         <p>El editor carga aquí con tu sesión de Google: editas dentro del IDE,
         con las mismas herramientas de siempre.</p>
        </div>`
@@ -57,16 +57,16 @@ ${
 }
 
 function abrir(contexto) {
-  const cruda = vscode.workspace.getConfiguration("sumakit").get("slidesUrl");
+  const cruda = vscode.workspace.getConfiguration("mintaLabs").get("slidesUrl");
   const url = normalizar(cruda);
   if (cruda && !url) {
     vscode.window.showWarningMessage(
-      "sumakit.slidesUrl debe ser una URL de docs.google.com. Se ignoró por seguridad."
+      "mintaLabs.slidesUrl debe ser una URL de docs.google.com. Se ignoró por seguridad."
     );
   }
 
   const panel = vscode.window.createWebviewPanel(
-    "sumakit.slides",
+    "mintaLabs.slides",
     "Deck · Google Slides",
     vscode.ViewColumn.Beside,
     { enableScripts: true, retainContextWhenHidden: true }

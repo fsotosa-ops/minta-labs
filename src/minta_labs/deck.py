@@ -12,7 +12,7 @@ etiqueta; "Dos tercios de la cartera realizó tres transacciones o menos" es un
 hallazgo. La primera obliga al lector a deducir; la segunda le entrega la
 conclusión. Es la regla de la Pirámide de Minto, y aquí es un `ValueError`.
 
-    from sumakit.deck import Deck
+    from minta_labs.deck import Deck
 
     d = Deck("Segmentación de tarjetahabientes", subtitle="Banco · agosto 2026")
     d.cover()

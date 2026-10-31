@@ -5,7 +5,7 @@ conector a medida: bases SQL, APIs REST, buckets, y las que se porten de
 `mage_integrations`.
 
     import dlt
-    from sumakit.destinations import suma_studio
+    from minta_labs.destinations import suma_studio
 
     pipeline = dlt.pipeline("banca", destination=suma_studio, dataset_name="taller")
     pipeline.run(mi_fuente(), table_name="perfil por segmento")

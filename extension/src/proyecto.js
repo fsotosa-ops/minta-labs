@@ -1,7 +1,7 @@
 /**
  * Lee el proyecto abierto y descubre dónde están las piezas.
  *
- * La estructura que busca es la que siembra `sumakit report init`:
+ * La estructura que busca es la que siembra `minta-labs report init`:
  * un taller con desarrollo/, informe/ y entrega/. Si no la encuentra, lo dice
  * en vez de fallar en silencio.
  */
@@ -49,7 +49,7 @@ function describir() {
     return {
       ok: false,
       base,
-      motivo: "No encontré ninguna carpeta informe/. Créala con: sumakit report init",
+      motivo: "No encontré ninguna carpeta informe/. Créala con: minta-labs report init",
     };
   }
 
